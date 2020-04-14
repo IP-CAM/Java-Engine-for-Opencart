@@ -1,0 +1,30 @@
+/* baloo-regular - latin */
+/*
+@font-face {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Baloo Regular'), local('Baloo-Regular'),
+       url('../font/baloo-bhaina-v5-latin-regular.woff') format('woff'),
+       url('../fonts/baloo-v5-latin-regular.woff2') format('woff2')
+}
+*/
+/*
+@font-face {
+  font-family: 'foundation';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Foundation Regular'), local('Foundation Regular'),
+       url('../font/foundation-icons.woff') format('woff')
+}
+*/
+@font-face {
+  font-family: 'foundation';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Foundation Regular'), local('Foundation Regular'),
+       url('../font/E-commerce.ttf') format('ttf') /* Modern Browsers */
+}
+
+.ecommerce { font-family: "foundation", normal }
+

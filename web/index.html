@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <title>Calculadora IRPF da FATEC</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <meta name="author" content="Josias">
+    </head>
+    <body>
+        <h2>Programa para calcular a alíquota do IRPF<br>(Imposto de Renda Pessoa Física)</h2>
+        <form method="post" action="http://localhost:8080/CalculadoraIRPF-02/CalculadoraIRPF">
+            <div class="grid-listar">
+                <label>Nome</label>
+                <input id="nome" type="text" name="nome" placeholder="Nome">
+                <label>CPF</label>
+                <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00">
+                <label>Digite o total de teus rendimentos: R$</label>
+                <input id="rendimentos" type="number" name="rendimentos" pattern="^\d*(\.\d{0,2})?$" step="0.01" placeholder="0000,00">                
+            </div>
+            <div class="botao">
+                <button type="submit" id="operacao" >Calcular</button> 
+            </div>
+        </form> 
+    </body>
+</html>
