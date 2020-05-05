@@ -20,7 +20,7 @@
                     <div id="content" class="col-sm-12"> 
                         <article>                            
                             <h3>Pedido enviado</h3>                    
-                            <p>Você pode conferir o andamento de teu pedido em "<a href="/ZZZ_ag_908/livraria?rca=unuD">Minha conta</a>" e "<a href="/ZZZ_ag_908/livraria?rca=OnOL&name=${user}">Histórico de pedidos</a>".</p>
+                            <p>Você pode conferir o andamento de teu pedido em "<a href="/ZZZ_ag_908/ag?rsa=cinvciv">Minha conta</a>" e "<a href="/ZZZ_ag_908/ag?rsa=odnvodl&name=${user}">Histórico de pedidos</a>".</p>
                             <p>Agradecemos muito pela tua compra conosco!!!.</p>
                         </article>
                     </div>

@@ -6,7 +6,7 @@ document.getElementById("input-address-postcode").addEventListener("change", fun
         $.ajax({
             type: "GET",
             headers: {"Authorization": window.sessionStorage.getItem('token')},            
-            url: "http://localhost:8084/ZZZ_ag_908/JsonService?entity=Logradouro&action=findOneById&cep=" + cep,
+            url: "http://localhost:8084/ZZZ_ag_908/ag?rsa=alij&id=" + cep,
             dataType: 'json', // tipo de dados da requisição.
             contentType: "application/json; charset=utf-8",
             success: function (result) {

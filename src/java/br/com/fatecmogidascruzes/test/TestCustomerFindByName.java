@@ -33,7 +33,7 @@ public class TestCustomerFindByName {
         */
         
         TableCustomer customer2 = new TableCustomer();
-        customer2.setUsername("ThaisDaufouy");
+        customer2.setUsername("patriciatavares");
         Fachada fachada = new Fachada();
         Resultado result = fachada.findByName(customer2);
         List<EntidadeDominio> entity = result.getEntidades();

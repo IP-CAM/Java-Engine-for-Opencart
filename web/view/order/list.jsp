@@ -19,14 +19,13 @@
             </ul>
             <div class="row">
                 <div id="content" class="col-sm-12">
-                    <h1>Lista de pedidos"></h1>
+                    <h1>Lista de pedidos </h1>
                     <c:choose>
                         <c:when test="${empty orderList}">
                             Nenhum pedido cadastrado
                         </c:when>
                         <c:otherwise>                                    
-                            <div class="table-responsive">   
-                                <!-- ${orderList} -->
+                            <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -40,21 +39,20 @@
                                     <tbody>                                                    
                                         <c:forEach var="order" items="${orderList}">
                                             <tr>
-                                                
-                                                    <td class="text-left">${order.dateAdded}</td>
-                                                    <td class="text-left">${order.username}</td>                                                
-                                                    <td class="text-left">${order.shippingAddress1}, ${order.shippingAddress2}, ${order.shippingAddress2}, ${order.shippingCity}, ${order.shippingZone}</td>                                                
-                                                    <td class="text-left">${order.shippingMethod}</td>                                                
-                                                    <td  class="tab-overflow">  
-                                                        <span id="cart-total">
-                                                            <fmt:formatNumber value = "${order.total}" type = "currency"/></span>
-                                                    </td>
-                                                    <td>
-                                                        <form class="panel-body" method="post" action="/ZZZ_ag_908/livraria?rca=OIOD">
-                                                            <input type="hidden" name="id" value="${order.id}" id="input-order-orderId" >
-                                                            <button id="customer-button-confirm" class="btn btn-primary pull-right" type="submit">Exibir detalhe</button>
-                                                        </form>
-                                                    </td>
+                                                <td class="text-left">${order.dateAdded}</td>
+                                                <td class="text-left">${order.username}</td>                                                
+                                                <td class="text-left">${order.shippingAddress1}, ${order.shippingAddress2}, ${order.shippingAddress2}, ${order.shippingCity}, ${order.shippingZone}</td>                                                
+                                                <td class="text-left">${order.shippingMethod}</td>                                                
+                                                <td  class="tab-overflow">  
+                                                    <span id="cart-total">
+                                                        <fmt:formatNumber value = "${order.total}" type = "currency"/></span>
+                                                </td>
+                                                <td>
+                                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/ag?rsa=odivodv">
+                                                        <input type="hidden" name="id" value="${order.id}" id="order-detail" >
+                                                        <button id="order-detail" class="btn btn-info pull-right" type="submit" title="Exibir detalhe do pedido" data-original-title="Exibir"><i class="fa fa-eye"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

@@ -38,21 +38,21 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6">
-                                <div class="form-group"><a href="/ZZZ_ag_908/livraria?route=product/compare" id="compare-total" class="btn btn-link">Produtos para comparar (0)</a></div>
+                                <div class="form-group"><a href="/ZZZ_ag_908/Servlet?route=product/compare" id="compare-total" class="btn btn-link">Produtos para comparar (0)</a></div>
                             </div>
                             <div class="col-md-4 col-xs-6">
                                 <div class="form-group input-group input-group-sm">
                                     <label class="input-group-addon" for="input-sort">Organizar por:</label>
                                     <select id="input-sort" class="form-control" onchange="location = this.value;">
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=p.sort_order&amp;order=ASC" selected="selected">Padrão</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=pd.name&amp;order=ASC">Nome (A - Z)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=pd.name&amp;order=DESC">Nome (Z - A)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=p.price&amp;order=ASC">Preço (menor &gt; maior)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=p.price&amp;order=DESC">Preço (maior &gt; menor)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=rating&amp;order=DESC">Avaliação (maior)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=rating&amp;order=ASC">Avaliação (menor)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=p.model&amp;order=ASC">Modelo (A - Z)</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;sort=p.model&amp;order=DESC">Modelo (Z - A)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=p.sort_order&amp;order=ASC" selected="selected">Padrão</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=pd.name&amp;order=ASC">Nome (A - Z)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=pd.name&amp;order=DESC">Nome (Z - A)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=p.price&amp;order=ASC">Preço (menor &gt; maior)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=p.price&amp;order=DESC">Preço (maior &gt; menor)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=rating&amp;order=DESC">Avaliação (maior)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=rating&amp;order=ASC">Avaliação (menor)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=p.model&amp;order=ASC">Modelo (A - Z)</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;sort=p.model&amp;order=DESC">Modelo (Z - A)</option>
                                     </select>
                                 </div>
                             </div>
@@ -60,11 +60,11 @@
                                 <div class="form-group input-group input-group-sm">
                                     <label class="input-group-addon" for="input-limit">Exibir:</label>
                                     <select id="input-limit" class="form-control" onchange="location = this.value;">
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;limit=15" selected="selected">15</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;limit=25">25</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;limit=50">50</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;limit=75">75</option>
-                                        <option value="/ZZZ_ag_908/livraria?route=product/category&amp;path=1_70&amp;limit=100">100</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;limit=15" selected="selected">15</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;limit=25">25</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;limit=50">50</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;limit=75">75</option>
+                                        <option value="/ZZZ_ag_908/Servlet?route=product/category&amp;path=1_70&amp;limit=100">100</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,13 +79,13 @@
                                         <div class="product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                             <div class="product-thumb">
                                                 <div class="image">
-                                                    <a href="/ZZZ_ag_908/livraria?rca=pIpD&id=${product.id}">
+                                                    <a href="/ZZZ_ag_908/ag?rsa=ptivptv&id=${product.id}">
                                                         <img src="img/${product.image}" alt="${product.name}" title="${product.name}" class="img-responsive">
                                                     </a>
                                                 </div>
                                                 <div>
                                                     <div class="caption">
-                                                        <h4><a href="http://localhost:8084/ZZZ_ag_908/livraria?rca=pIpD&id=${product.id}">${product.name}</a></h4>
+                                                        <h4><a href="http://localhost:8084/ZZZ_ag_908/ag?rsa=ptivptv&id=${product.id}">${product.name}</a></h4>
                                                         <p>..</p>
                                                         <p class="price"> R$ ${product.price}</p>
                                                     </div>
@@ -109,8 +109,8 @@
                                                 <li><span><i class="fa fa-arrow-stop"></i></span></li> 
                                             </c:when>
                                             <c:otherwise>
-                                                <li><a href="/ZZZ_ag_908/livraria?rca=PPpL&page=0"><i class="fa fa-step-backward"></i></a></li>
-                                                <li><a href="/ZZZ_ag_908/livraria?rca=PPpL&page=${pageNumber - 1}"><i class="fa fa-caret-left"></i></a></li>                                                
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=0"><i class="fa fa-step-backward"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageNumber - 1}"><i class="fa fa-caret-left"></i></a></li>                                                
                                             </c:otherwise>
                                         </c:choose>
                                         <%
@@ -124,7 +124,7 @@
                                                     <%
                                                 }else{
                                                     %>
-                                                        <li><a href="/ZZZ_ag_908/livraria?rca=PPpL&page=<%=i%>"><%=i + 1 %></a></li> <!-- A numerção da página começa em um, mas a variável começa em zero. -->
+                                                        <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=<%=i%>"><%=i + 1 %></a></li> <!-- A numerção da página começa em um, mas a variável começa em zero. -->
                                                     <%
                                                 }
                                             }
@@ -134,8 +134,8 @@
                                                 <li><span><i class="fa fa-arrow-stop"></i></span></li>
                                             </c:when>
                                             <c:otherwise>                                                
-                                                <li><a href="/ZZZ_ag_908/livraria?rca=PPpL&page=${pageNumber + 1}&findBy=${pagination.findBy}&searchValue=${pagination.searchValue}"><i class="fa fa-caret-right"></i></a></li>
-                                                <li><a href="/ZZZ_ag_908/livraria?rca=PPpL&page=${pageQuantity}"><i class="fa fa-step-forward"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageNumber + 1}&findBy=${pagination.findBy}&searchValue=${pagination.searchValue}"><i class="fa fa-caret-right"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageQuantity}"><i class="fa fa-step-forward"></i></a></li>
                                             </c:otherwise>
                                         </c:choose>
                                     </ul>

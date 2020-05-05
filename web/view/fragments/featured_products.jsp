@@ -3,13 +3,13 @@
 
 <h3>Destaques</h3>
 <div class="row">
-    <c:forEach var="featuredProductList" items="${featuredProduct}">
+    <c:forEach var="featuredProductList" items="${store.featuredProduct}">
         <c:forEach var="product" items="${featuredProductList.productList}">
             <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="product-thumb transition">
-                    <div class="image"><a href="/ZZZ_ag_908/livraria?rca=pIpD&id=${product.id}"><img src="/ZZZ_ag_908/img/${product.image}" alt="${product.metaTitle}" title="${product.name}" class="img-responsive"></a></div>
+                    <div class="image"><a href="/ZZZ_ag_908/ag?rsa=ptivptv&id=${product.id}"><img src="/ZZZ_ag_908/img/${product.image}" alt="${product.metaTitle}" title="${product.name}" class="img-responsive"></a></div>
                     <div class="caption">
-                        <h4><a href="/ZZZ_ag_908/livraria?rca=pIpD&id=${product.id}">${product.name}</a></h4>
+                        <h4><a href="/ZZZ_ag_908/ag?rsa=ptivptv&id=${product.id}">${product.name}</a></h4>
                         <!-- <p>${product.description}</p> -->
                         <p class="price">
                             R$ ${product.price}

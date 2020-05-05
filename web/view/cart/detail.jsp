@@ -35,6 +35,7 @@
                                         <tr>
                                             <td class="text-center">Imagem</td>
                                             <td class="text-left">Produto</td>
+                                            <td class="text-left">Modelo</td>
                                             <td class="text-left">Quantidade</td>
                                             <td class="text-right">Preço</td>
                                             <td class="text-right">Total</td>
@@ -64,7 +65,7 @@
                                     <button id="btn-authenticarion" type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#ModalAuthentication">Autenticar para finalizar pedido</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="pull-right"><a href="/ZZZ_ag_908/livraria?rca=unOC" class="btn btn-primary">Finalizar pedido</a></div>
+                                    <div class="pull-right"><a href="/ZZZ_ag_908/ag?rsa=cinvodc" class="btn btn-primary">Finalizar pedido</a></div>
                                 </c:otherwise>
                             </c:choose>
                         </div>

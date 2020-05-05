@@ -749,7 +749,7 @@ CREATE TABLE `table_order` (
   CONSTRAINT `fk_marketing` FOREIGN KEY (`marketing_id`) REFERENCES `table_marketing` (`marketing_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_status` FOREIGN KEY (`order_status_id`) REFERENCES `table_order_status` (`order_status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_store` FOREIGN KEY (`store_id`) REFERENCES `table_store` (`store_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -763,7 +763,7 @@ CREATE TABLE `table_order_history` (
   KEY `idx_order_status` (`order_status_id`),
   CONSTRAINT `fk_order_history_to_order` FOREIGN KEY (`order_id`) REFERENCES `table_order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_history_to_order_status` FOREIGN KEY (`order_status_id`) REFERENCES `table_order_status` (`order_status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_order_option` (
   `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -800,7 +800,7 @@ CREATE TABLE `table_order_product` (
   KEY `order_id` (`order_id`),
   KEY `idx_product` (`product_id`),
   CONSTRAINT `fk_order_product_to_order` FOREIGN KEY (`order_id`) REFERENCES `table_order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_order_recurring` (
   `order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -859,6 +859,78 @@ CREATE TABLE `table_order_status` (
   PRIMARY KEY (`order_status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `table_order_temp` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `invoice_no` int(11) DEFAULT NULL,
+  `invoice_prefix` varchar(26) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  `store_name` varchar(64) DEFAULT NULL,
+  `store_url` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `customer_group_id` int(11) DEFAULT NULL,
+  `fullname` varchar(80) DEFAULT NULL,
+  `username` varchar(32) DEFAULT NULL,
+  `email` varchar(96) DEFAULT NULL,
+  `telephone` varchar(32) DEFAULT NULL,
+  `fax` varchar(32) DEFAULT NULL,
+  `payment_fullname` varchar(32) DEFAULT NULL,
+  `payment_username` varchar(32) DEFAULT NULL,
+  `payment_company` varchar(60) DEFAULT NULL,
+  `payment_address_1` varchar(128) DEFAULT NULL,
+  `payment_address_2` varchar(128) DEFAULT NULL,
+  `payment_city` varchar(128) DEFAULT NULL,
+  `payment_postcode` varchar(10) DEFAULT NULL,
+  `payment_country` varchar(128) DEFAULT NULL,
+  `payment_country_id` int(11) DEFAULT NULL,
+  `payment_zone` varchar(128) DEFAULT NULL,
+  `payment_zone_id` int(11) DEFAULT NULL,
+  `payment_address_format` text DEFAULT NULL,
+  `payment_method` varchar(128) DEFAULT NULL,
+  `payment_code` varchar(128) DEFAULT NULL,
+  `shipping_username` varchar(32) DEFAULT NULL,
+  `shipping_fullname` varchar(32) DEFAULT NULL,
+  `shipping_company` varchar(40) DEFAULT NULL,
+  `shipping_address_1` varchar(128) DEFAULT NULL,
+  `shipping_address_2` varchar(128) DEFAULT NULL,
+  `shipping_city` varchar(128) DEFAULT NULL,
+  `shipping_postcode` varchar(10) DEFAULT NULL,
+  `shipping_country` varchar(128) DEFAULT NULL,
+  `shipping_country_id` int(11) DEFAULT NULL,
+  `shipping_zone` varchar(128) DEFAULT NULL,
+  `shipping_zone_id` int(11) DEFAULT NULL,
+  `shipping_address_format` text DEFAULT NULL,
+  `shipping_method` varchar(128) DEFAULT NULL,
+  `shipping_code` varchar(128) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `total` decimal(15,4) DEFAULT 0.0000,
+  `order_status_id` int(11) DEFAULT NULL,
+  `affiliate_id` int(11) DEFAULT NULL,
+  `commission` decimal(15,4) DEFAULT NULL,
+  `marketing_id` int(11) DEFAULT NULL,
+  `tracking` varchar(64) DEFAULT NULL,
+  `language_id` int(11) DEFAULT NULL,
+  `currency_id` int(11) DEFAULT NULL,
+  `currency_code` varchar(3) DEFAULT NULL,
+  `currency_value` decimal(15,8) DEFAULT 1.00000000,
+  `ip` varchar(40) DEFAULT NULL,
+  `forwarded_ip` varchar(40) DEFAULT NULL,
+  `user_agent` varchar(255) DEFAULT NULL,
+  `accept_language` varchar(255) DEFAULT NULL,
+  `date_added` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_modified` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`order_id`),
+  KEY `idx_customer` (`user_id`),
+  KEY `idx_store` (`store_id`),
+  KEY `idx_customer_group` (`customer_group_id`),
+  KEY `idx_payment_country` (`payment_country_id`),
+  KEY `idx_payment_zone` (`payment_zone_id`),
+  KEY `idx_shipping_country` (`shipping_country_id`),
+  KEY `idx_shipping_zone` (`shipping_zone_id`),
+  KEY `idx_marketing` (`marketing_id`),
+  KEY `idx_currency` (`currency_id`),
+  KEY `idx_order_status` (`order_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=318329 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `table_order_total` (
   `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -870,7 +942,7 @@ CREATE TABLE `table_order_total` (
   KEY `order_id` (`order_id`),
   KEY `idx_order` (`order_id`),
   CONSTRAINT `fk_order_total_to_order` FOREIGN KEY (`order_id`) REFERENCES `table_order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -930,16 +1002,16 @@ CREATE TABLE `table_product` (
   `date_added` datetime NOT NULL DEFAULT current_timestamp(),
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`product_id`),
-  KEY `idx_weight_class` (`weight_class_id`),
   KEY `idx_stock_status` (`stock_status_id`),
   KEY `idx_manufacturer` (`manufacturer_id`),
   KEY `idx_tax_class_id` (`tax_class_id`),
   KEY `idx_length_class` (`length_class_id`),
+  KEY `fk_product_to_weight_class_idx` (`weight_class_id`),
   CONSTRAINT `fk_product_to_length_class` FOREIGN KEY (`length_class_id`) REFERENCES `table_length_class` (`length_class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_to_manufacturer` FOREIGN KEY (`manufacturer_id`) REFERENCES `table_manufacturer` (`manufacturer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_to_stock_status` FOREIGN KEY (`stock_status_id`) REFERENCES `table_stock_status` (`stock_status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_to_tax_class` FOREIGN KEY (`tax_class_id`) REFERENCES `table_tax_class` (`tax_class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_product_to_weight_class` FOREIGN KEY (`weight_class_id`) REFERENCES `table_weight_class` (`weight_class_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_product_to_weight_class` FOREIGN KEY (`weight_class_id`) REFERENCES `table_weight_class` (`weight_class_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_product_attribute` (
@@ -1081,9 +1153,9 @@ CREATE TABLE `table_return` (
   `return_action_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
   `comment` text DEFAULT NULL,
-  `date_ordered` date NOT NULL DEFAULT '2020-01-01',
+  `date_ordered` date NOT NULL DEFAULT current_timestamp(),
   `date_added` datetime NOT NULL DEFAULT current_timestamp(),
-  `date_modified` datetime NOT NULL,
+  `date_modified` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`return_id`),
   KEY `idx_oder` (`order_id`),
   KEY `idx_product` (`product_id`),
@@ -1097,14 +1169,14 @@ CREATE TABLE `table_return` (
   CONSTRAINT `fk_return_to_return_action` FOREIGN KEY (`return_action_id`) REFERENCES `table_return_action` (`return_action_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_return_to_return_reason` FOREIGN KEY (`return_reason_id`) REFERENCES `table_return_reason` (`return_reason_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_return_to_return_status` FOREIGN KEY (`return_status_id`) REFERENCES `table_return_status` (`return_status_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_return_action` (
   `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`return_action_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_return_history` (
   `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1121,14 +1193,14 @@ CREATE TABLE `table_return_reason` (
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`return_reason_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_return_status` (
   `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`return_status_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1148,8 +1220,8 @@ CREATE TABLE `table_seo_url` (
   `seo_url_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `query` varchar(255) NOT NULL,
-  `keyword` varchar(255) NOT NULL,
+  `query` varchar(128) NOT NULL,
+  `keyword` varchar(2) NOT NULL,
   PRIMARY KEY (`seo_url_id`),
   KEY `query` (`query`),
   KEY `keyword` (`keyword`)
@@ -1344,12 +1416,12 @@ CREATE TABLE `table_voucher_theme_description` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_weight_class` (
-  `weight_class_id` int(11) NOT NULL,
+  `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   `unit` varchar(4) NOT NULL,
   `value` decimal(15,8) NOT NULL DEFAULT 0.00000000,
   PRIMARY KEY (`weight_class_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `table_zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,

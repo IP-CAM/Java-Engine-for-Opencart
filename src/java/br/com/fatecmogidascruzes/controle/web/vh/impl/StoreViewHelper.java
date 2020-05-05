@@ -5,7 +5,7 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
-import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.IEntidade;
 import br.com.fatecmogidascruzes.domain.impl.TableStore;
@@ -18,14 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Josias Wattrelos
  */
-public class StoreViewHelper implements IViewHelper {
+public class StoreViewHelper extends EntityFactory {
 
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
         TableStore store = new TableStore();
         /*
         switch(request.getParameter("rca").charAt(1)){
-            case 'I': // Se a rota for para buscar store por ID
+            case 'i': // Se a rota for para buscar store por ID
                 store.setId(Integer.parseInt(request.getParameter("id")));
             break;
             default:

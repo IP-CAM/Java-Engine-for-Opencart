@@ -31,7 +31,7 @@
                                     <h4 class="panel-title"><i class="fa fa-id-card"></i> Criar uma conta</h4>
                                 </div>
                                 <div class="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="true" style="">
-                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/livraria?rca=uCaC">
+                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/ag?rsa=uCaC">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <fieldset id="account">

@@ -18,8 +18,9 @@ public class  OrderProductDAO  extends AbstractDAO {
         
         TableOrderProduct orderProduct = (TableOrderProduct)entity;
         TableProduct product = new TableProduct();
-        AbstractDAO dao = new AbstractDAO(product);
-        product = (TableProduct) dao.findOneById(orderProduct.getProductId());       
+        AbstractDAO daoProduct = new AbstractDAO(product);
+        if(true) throw new UnsupportedOperationException("OrderProductDAO.create=" + orderProduct.getProductId());
+        product = (TableProduct) daoProduct.findOneById(orderProduct.getProductId());       
         orderProduct.setName(product.getName());
         orderProduct.setModel(product.getModel());
         orderProduct.setPrice(product.getPrice());

@@ -32,7 +32,7 @@
                                     <h4 class="panel-title"><i class="fa fa-id-card"></i>Cadastrar uma nova categoria</h4>
                                 </div>
                                 <div class="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="true" style="">
-                                    <form class="panel-body" method="post" enctype='application/json' action="/ZZZ_ag_908/JsonService?entity=Category&action=create">
+                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/ag?rsa=cC">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <fieldset id="account">

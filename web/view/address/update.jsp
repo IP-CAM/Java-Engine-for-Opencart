@@ -33,7 +33,7 @@
                                 <div class="panel-group" id="accordion">
                                     <div class="panel panel-default">                                       
                                         <div class="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="true" style="">
-                                            <form class="panel-body" method="post" action="/ZZZ_ag_908/livraria?rca=aUaL">
+                                            <form class="panel-body" method="post" action="/ZZZ_ag_908/ag?rsa=aUaL">
                                                 <div class="row">   
                                                     <div class="col-sm-6">
                                                         <fieldset id="address">

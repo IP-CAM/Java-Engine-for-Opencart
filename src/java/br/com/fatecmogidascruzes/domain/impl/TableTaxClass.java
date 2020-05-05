@@ -105,7 +105,23 @@ public class TableTaxClass extends EntidadeDominio implements Serializable {
     public void setId(Integer taxClassId) {
         this.taxClassId = taxClassId;
     }
+    
+    @Override
+    public String getName() {
+        return title;
+    }
 
+    public void setName(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Date getDateAdded() {
         return dateAdded;
@@ -121,16 +137,7 @@ public class TableTaxClass extends EntidadeDominio implements Serializable {
 
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
-    }
-
-    @XmlTransient
-    public List<TableProduct> getTableProductList() {
-        return tableProductList;
-    }
-
-    public void setTableProductList(List<TableProduct> tableProductList) {
-        this.tableProductList = tableProductList;
-    }
+    }    
 
     @Override
     public int hashCode() {
@@ -156,21 +163,4 @@ public class TableTaxClass extends EntidadeDominio implements Serializable {
     public String toString() {
         return "br.com.fatecmogidascruzes.domain.impl.TableTaxClass[ taxClassId=" + taxClassId + " ]";
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
 }

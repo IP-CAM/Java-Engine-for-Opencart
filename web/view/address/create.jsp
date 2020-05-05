@@ -31,7 +31,7 @@
                                     <h4 class="panel-title"><a href="#collapse-payment-address" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle" aria-expanded="true">Detalhes da sua conta <i class="fa fa-caret-down"></i></a></h4>
                                 </div>
                                 <div class="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="true" style="">
-                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/livraria?rca=aC1_">
+                                    <form class="panel-body" method="post" action="/ZZZ_ag_908/ag?rsa=aC1_">
                                         <div class="row">   
                                             <div class="col-sm-6">
                                                 <fieldset id="address">

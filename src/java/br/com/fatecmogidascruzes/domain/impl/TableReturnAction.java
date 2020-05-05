@@ -43,7 +43,11 @@ public class TableReturnAction extends EntidadeDominio implements Serializable {
     private String name;
 
     public TableReturnAction() {
-    }    
+    }
+
+    public TableReturnAction(Integer returnActionId) {
+        this.returnActionId = returnActionId;
+    }
 
     @Override
     public Integer getId() {

@@ -5,6 +5,7 @@
  */
 package br.com.fatecmogidascruzes.domain.impl;
 
+import br.com.fatecmogidascruzes.domain.EntidadeDominio;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,11 +29,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableFilter.findAll", query = "SELECT t FROM TableFilter t"),
-    @NamedQuery(name = "TableFilter.findByFilterId", query = "SELECT t FROM TableFilter t WHERE t.filterId = :filterId"),
+    @NamedQuery(name = "TableFilter.findById", query = "SELECT t FROM TableFilter t WHERE t.filterId = :id"),
     @NamedQuery(name = "TableFilter.findByFilterGroupId", query = "SELECT t FROM TableFilter t WHERE t.filterGroupId = :filterGroupId"),
     @NamedQuery(name = "TableFilter.findBySortOrder", query = "SELECT t FROM TableFilter t WHERE t.sortOrder = :sortOrder"),
     @NamedQuery(name = "TableFilter.findByName", query = "SELECT t FROM TableFilter t WHERE t.name = :name")})
-public class TableFilter implements Serializable {
+public class TableFilter extends EntidadeDominio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,11 +68,13 @@ public class TableFilter implements Serializable {
         this.name = name;
     }
 
-    public Integer getFilterId() {
+    @Override
+    public Integer getId() {
         return filterId;
     }
 
-    public void setFilterId(Integer filterId) {
+    @Override
+    public void setId(Integer filterId) {
         this.filterId = filterId;
     }
 
@@ -91,6 +94,7 @@ public class TableFilter implements Serializable {
         this.sortOrder = sortOrder;
     }
 
+    @Override
     public String getName() {
         return name;
     }

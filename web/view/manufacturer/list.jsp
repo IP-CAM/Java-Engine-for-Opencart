@@ -56,7 +56,7 @@
                             </c:choose>
       
                             <div class="row">
-                                <div class="col-sm-3"><a href="livraria?rca=qPrL&findBy=Manufacturer&findBy=${manufacturer.id}">${manufacturer.name}</a></div>                               
+                                <div class="col-sm-3"><a href="ag?rsa=qPrL&findBy=Manufacturer&findBy=${manufacturer.id}">${manufacturer.name}</a></div>                               
                             </div>
                         </c:forEach>                        
                     </div>

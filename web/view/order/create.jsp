@@ -18,7 +18,7 @@
         <title>Carrinho de compras</title>
     </head>
     <body style="background-color: #13181e;">
-        <form method="post" action="/ZZZ_ag_908/livraria?rca=qCOC" class="panel-group" id="createCreditCard"></form>
+        <form method="post" action="/ZZZ_ag_908/ag?rsa=cgcvodc" class="panel-group" id="createCreditCard"></form>
         <div class="body_wrap">            
             <%@include file="/view/fragments/header.jsp" %>
             <div id="checkout-checkout" class="container">
@@ -29,8 +29,8 @@
                 </ul>
                 <div class="row">
                     <div id="content" class="col-sm-12">
-                        <h1>Finalizar pedido de ${customer.fullName}</h1>
-                        <form method="post" action="/ZZZ_ag_908/livraria?rca=OCOy" class="panel-group" id="accordion" onsubmit="checkAgree(event)">              
+                        <h1>Finalizar pedido de ${customerList[0].fullName}</h1>
+                        <form method="post" action="/ZZZ_ag_908/ag?rsa=odcvodm" class="panel-group" id="accordion" onsubmit="checkAgree(event)">              
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
@@ -44,14 +44,14 @@
                                             </div>
                                             <div id="payment-existing">
                                                 <c:choose>
-                                                    <c:when test="${empty customer.addressList}">
+                                                    <c:when test="${empty customerList[0].addressList}">
                                                         Nenhum endereço cadastrado
                                                     </c:when>
                                                     <c:otherwise>                                                         
                                                         <select name="payment-address-id" class="form-control">
-                                                            <c:forEach var="address" items="${customer.addressList}">                                                    
+                                                            <c:forEach var="address" items="${customerList[0].addressList}">                                                    
                                                                 <option value="${address.id}" selected="selected">
-                                                                    ${customer.fullName}
+                                                                    ${customerList[0].fullName}
                                                                     , ${address.logradouro.postcode}
                                                                     , ${address.logradouro.tipoLogradouro} ${address.logradouro.logradouro}
                                                                     , ${address.houseNumbering}
@@ -73,13 +73,13 @@
                                                 <div class="form-group required">
                                                     <label class="col-sm-2 control-label" for="input-payment-firstname">Nome</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="firstname" placeholder="Nome" id="input-payment-firstname" class="form-control">
+                                                        <input type="text" name="fullname" placeholder="Nome" id="input-payment-firstname" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-group required">
                                                     <label class="col-sm-2 control-label" for="input-payment-lastname">Sobrenome</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="lastname" placeholder="Sobrenome" id="input-payment-lastname" class="form-control">
+                                                        <input type="text" name="username" placeholder="Sobrenome" id="input-payment-lastname" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -160,14 +160,14 @@
                                             </div>
                                             <div id="shipping-existing">
                                                 <c:choose>
-                                                    <c:when test="${empty customer.addressList}">
+                                                    <c:when test="${empty customerList[0].addressList}">
                                                         Nenhum endereço cadastrado
                                                     </c:when>
                                                     <c:otherwise>                                                         
                                                         <select name="shipping-address-id" class="form-control">
-                                                            <c:forEach var="address" items="${customer.addressList}">                                                    
+                                                            <c:forEach var="address" items="${customerList[0].addressList}">                                                    
                                                                 <option value="${address.id}" selected="selected">
-                                                                    ${customer.fullName}
+                                                                    ${customerList[0].fullName}
                                                                     , ${address.logradouro.postcode}
                                                                     , ${address.logradouro.tipoLogradouro} ${address.logradouro.logradouro}
                                                                     , ${address.houseNumbering}
@@ -273,7 +273,7 @@
                                         <p><strong>Valor do frete:</strong></p>
                                         <div class="radio">
                                             <label><input type="radio" name="shipping-value" value="23.56" checked="checked">Transportadora - R$ 23,56</label>
-                                        </div>
+                                        </div>                                       
                                         <div class="buttons">
                                             <div class="pull-right">
                                                 <a href="#collapse-payment-method" data-toggle="collapse" data-parent="#accordion" class="btn btn-primary">Continuar</a>
@@ -301,7 +301,7 @@
                                                     <div class="radio">
                                                         <label><input type="radio" name="payment_method" value="cod" checked="checked">Pagar com cartão:</label>
                                                         <select name="shipping-payment-id" class="form-control">
-                                                             <c:forEach var="creditcard" items="${customer.creditcardList}">                                                    
+                                                             <c:forEach var="creditcard" items="${customerList[0].creditcardList}">                                                    
                                                                  <option value="${creditcard.id}" selected="selected">                                                                     
                                                                      Cartão final ${fn:substring(creditcard.number, 12, 16)}
                                                                  </option>
@@ -372,10 +372,8 @@
                                         </p>
                                         <span id="alert-dismissible"></span>                                        
                                         <div class="buttons">
-                                            <div class="pull-right">Eu li e concordo com o contrato de <a href="/ZZZ_ag_908/livraria?rca=iIiD&information=5" class="agree" ><b>Termos e Condições</b></a>
+                                            <div class="pull-right">Eu li e concordo com o contrato de <a href="/ZZZ_ag_908/ag?rsa=iIiD&information=5" class="agree" ><b>Termos e Condições</b></a>
                                                 <input type="checkbox" name="agree" id="agree" value="1" data-toggle="tooltip" data-placement="top" title="Para solicitar o pedido, é necessáro ter lido e estar de acordo com os Termos e Condições.">
-                                                &nbsp;                                                
-                                                <!-- <input type="button" value="Confirmar pedido" id="button-confirm" data-loading-text="Carregando..." class="btn btn-primary"> -->
                                                 <button id="header-authenticarion" type="submit" class="btn btn-primary">Confirmar pedido</button>
                                             </div>                                           
                                         </div>

@@ -50,8 +50,8 @@
                                                             <td class="text-left">${address.logradouro.bairro.name}</td>
                                                             <td class="text-left">${address.logradouro.bairro.cidade.name}</td>
                                                             <td class="text-left">${address.logradouro.bairro.cidade.estado.name}</td>
-                                                            <td class="text-right"><a href="/ZZZ_ag_908/livraria?rca=aIaU&addressId=${address.id}" class="btn btn-info">Editar</a></td>
-                                                            <td class="text-right"><a href="/ZZZ_ag_908/livraria?rca=aIaE&addressId=${address.id}" class="btn btn-danger">Excluir</a></td>
+                                                            <td class="text-right"><a href="/ZZZ_ag_908/ag?rsa=aIaU&addressId=${address.id}" class="btn btn-info">Editar</a></td>
+                                                            <td class="text-right"><a href="/ZZZ_ag_908/ag?rsa=aIaE&addressId=${address.id}" class="btn btn-danger">Excluir</a></td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
@@ -61,7 +61,7 @@
                         </c:choose>
                         <div class="buttons clearfix">
                             <div class="pull-left"><a href="javascript:window.history.go(-1)" class="btn btn-default">Voltar</a></div>
-                            <div class="pull-right"><a href="/ZZZ_ag_908/livraria?rca=unaC" class="btn btn-primary">Novo endereço</a></div>
+                            <div class="pull-right"><a href="/ZZZ_ag_908/ag?rsa=unaC" class="btn btn-primary">Novo endereço</a></div>
                         </div>
                     </div>
                 </div>

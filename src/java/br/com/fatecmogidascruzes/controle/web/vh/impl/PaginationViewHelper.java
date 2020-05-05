@@ -5,7 +5,7 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
-import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.IEntidade;
 import br.com.fatecmogidascruzes.domain.impl.Pagination;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Josias Wattrelos
  */
-public class PaginationViewHelper implements IViewHelper {
+public class PaginationViewHelper extends EntityFactory {
 
     Pagination pagination = new Pagination();
     @Override

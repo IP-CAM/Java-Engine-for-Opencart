@@ -51,6 +51,9 @@ public class TableReturnStatus extends EntidadeDominio implements Serializable {
     private Integer languageId;
     public TableReturnStatus() {
     }
+    public TableReturnStatus(Integer returnStatusId) {
+        this.returnStatusId = returnStatusId;
+    }
     public TableReturnStatus(Integer returnStatusId, String name, Integer languageId) {
         this.returnStatusId = returnStatusId;
         this.name = name;

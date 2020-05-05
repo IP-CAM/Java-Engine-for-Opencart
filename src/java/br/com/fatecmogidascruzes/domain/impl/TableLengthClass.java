@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableLengthClass.findAll", query = "SELECT t FROM TableLengthClass t"),
-    @NamedQuery(name = "TableLengthClass.findByLengthClassId", query = "SELECT t FROM TableLengthClass t WHERE t.lengthClassId = :lengthClassId"),
+    @NamedQuery(name = "TableLengthClass.findById", query = "SELECT t FROM TableLengthClass t WHERE t.lengthClassId = :id"),
     @NamedQuery(name = "TableLengthClass.findByValue", query = "SELECT t FROM TableLengthClass t WHERE t.value = :value"),
     @NamedQuery(name = "TableLengthClass.findByTitle", query = "SELECT t FROM TableLengthClass t WHERE t.title = :title"),
     @NamedQuery(name = "TableLengthClass.findByUnit", query = "SELECT t FROM TableLengthClass t WHERE t.unit = :unit")})
@@ -62,11 +62,6 @@ public class TableLengthClass extends EntidadeDominio implements Serializable {
     @Size(max = 4)
     @Column(name = "unit")
     private String unit;
-    
-    // Collections ---------------------------------------------------------------------------------------------------------------------------------
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lengthClass")
-    private List<TableProduct> tableProductList;
 
     // Constructors --------------------------------------------------------------------------------------------------------------------------------
     public TableLengthClass() {
@@ -91,7 +86,31 @@ public class TableLengthClass extends EntidadeDominio implements Serializable {
     public void setId(Integer lengthClassId) {
         this.lengthClassId = lengthClassId;
     }
+    
+    @Override
+    public String getName() {
+        return title;
+    }
 
+    public void setName(String title) {
+        this.title = title;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
     @Override
     public int hashCode() {
@@ -116,39 +135,5 @@ public class TableLengthClass extends EntidadeDominio implements Serializable {
     @Override
     public String toString() {
         return "br.com.fatecmogidascruzes.domain.impl.TableLengthClass[ lengthClassId=" + lengthClassId + " ]";
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    @XmlTransient
-    public List<TableProduct> getTableProductList() {
-        return tableProductList;
-    }
-
-    public void setTableProductList(List<TableProduct> tableProductList) {
-        this.tableProductList = tableProductList;
-    }
-    
+    }    
 }

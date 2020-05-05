@@ -69,7 +69,7 @@
                     </c:choose>
                     <div id="linechart_core"></div>
                 </div>
-                <form method="post" action="/ZZZ_ag_908/livraria?rca=ddOd" class="panel-group" id="daily-sales-report">
+                <form method="post" action="/ZZZ_ag_908/ag?rsa=ddOd" class="panel-group" id="daily-sales-report">
                     <div class="row">
                         <div class="form-horizontal">
                             <div class="form-group col-sm-3" data-toggle="tooltip" data-placement="top" title="Data inicial da busca">

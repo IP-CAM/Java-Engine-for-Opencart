@@ -24,6 +24,8 @@ public class  UserDAO  extends AbstractDAO {
         TableUser user = (TableUser) query.uniqueResult();
         return user;
     }
+    
+    // Create em User deve ter a senha criptografada antes de armazenar.
     @Override
     public EntidadeDominio create(EntidadeDominio entity) {
        
@@ -35,6 +37,7 @@ public class  UserDAO  extends AbstractDAO {
         transaction.commit();
         return entity;        
     }
+    // Update em User deve ter a senha criptografada antes de armazenar.
     @Override
     public EntidadeDominio update(EntidadeDominio entity) {    
         

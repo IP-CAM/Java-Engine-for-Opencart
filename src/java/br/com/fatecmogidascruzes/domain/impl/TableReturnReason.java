@@ -35,17 +35,22 @@ public class TableReturnReason extends EntidadeDominio implements Serializable {
     @Basic(optional = false)
     @Column(name = "return_reason_id")
     private Integer returnReasonId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
     @Column(name = "name")
     private String name;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "language_id")
     private Integer languageId;
 
     public TableReturnReason() {
+    }
+    public TableReturnReason(Integer returnReasonId) {
+        this.returnReasonId = returnReasonId;
     }
 
     public TableReturnReason(Integer returnReasonId, Integer languageId) {
@@ -62,13 +67,15 @@ public class TableReturnReason extends EntidadeDominio implements Serializable {
     public void setId(Integer returnReasonId) {
         this.returnReasonId = returnReasonId;
     }
-
-    public Integer getLanguageId() {
-        return languageId;
+    
+    @Override
+    public String getName(){
+        return name;
     }
-
-    public void setLanguageId(Integer languageId) {
-        this.languageId = languageId;
+    public void setName(String name){
+        this.name = name;
     }
+    
+    
     
 }

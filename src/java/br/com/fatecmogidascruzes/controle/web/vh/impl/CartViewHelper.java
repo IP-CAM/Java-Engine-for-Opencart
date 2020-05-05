@@ -5,7 +5,7 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
-import br.com.fatecmogidascruzes.controle.web.json.impl.CartJson;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.dao.impl.SessionDAO;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Josias Wattrelos
  */
-public class CartViewHelper implements IViewHelper {
+public class CartViewHelper extends EntityFactory {
 
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
@@ -54,7 +54,7 @@ public class CartViewHelper implements IViewHelper {
                         date2 = sdf.parse(dataAtual); // Obter a data atual;
                         mySession.setExpire(date2);
                     } catch (ParseException ex) {
-                        Logger.getLogger(CartJson.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(TableCart.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     sessionDao.create(mySession);
 

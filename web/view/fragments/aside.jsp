@@ -6,12 +6,12 @@
             <c:forEach var="categoryL2" items="${categoryL1.categoryList}">
                 <c:choose>
                     <c:when test="${empty categoryL2.categoryList}">
-                        <a href="/ZZZ_ag_908/livraria?rca=PPpL&findBy=Category&searchValue=${categoryL2.id}" class="list-group-item">${categoryL2.name}</a>
+                        <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL2.id}" class="list-group-item">${categoryL2.name}</a>
                     </c:when>
                     <c:otherwise>    
-                        <a href="/ZZZ_ag_908/livraria?rca=PPpL&findBy=Category&searchValue=${categoryL2.id}" class="list-group-item">${categoryL2.name}</a>
+                        <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL2.id}" class="list-group-item">${categoryL2.name}</a>
                         <c:forEach var="categoryL3" items="${categoryL2.categoryList}">
-                            <a href="/ZZZ_ag_908/livraria?rca=PPpL&findBy=Category&searchValue=${categoryL3.id}" class="list-group-item">&nbsp;&nbsp;&nbsp;- ${categoryL3.name}</a>
+                            <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL3.id}" class="list-group-item">&nbsp;&nbsp;&nbsp;- ${categoryL3.name}</a>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>

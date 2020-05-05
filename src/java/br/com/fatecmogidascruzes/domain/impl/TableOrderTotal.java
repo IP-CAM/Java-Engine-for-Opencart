@@ -94,6 +94,15 @@ public class TableOrderTotal extends EntidadeDominio implements Serializable {
     public void setId(Integer orderTotalId) {
         this.orderTotalId = orderTotalId;
     }
+    
+    @Override
+    public String getName() {
+        return title;
+    }
+
+    public void setName(String title) {
+        this.title = title;
+    }
 
     public String getCode() {
         return code;
@@ -101,14 +110,6 @@ public class TableOrderTotal extends EntidadeDominio implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public BigDecimal getValue() {

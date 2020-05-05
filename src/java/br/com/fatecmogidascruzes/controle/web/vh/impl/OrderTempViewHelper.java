@@ -5,9 +5,8 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
-import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
-import br.com.fatecmogidascruzes.domain.impl.TableOrder;
 import br.com.fatecmogidascruzes.domain.IEntidade;
 import br.com.fatecmogidascruzes.domain.impl.test.PaginationDate;
 import br.com.fatecmogidascruzes.domain.impl.test.TableOrderTemp;
@@ -15,7 +14,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Josias Wattrelos
  */
-public class OrderTempViewHelper implements IViewHelper {
+public class OrderTempViewHelper extends EntityFactory {
     
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {

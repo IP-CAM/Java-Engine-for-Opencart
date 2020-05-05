@@ -14,7 +14,8 @@ function updateCart() {
         carrinho.forEach(function (product, indice) {
             myCart +=
                     "<tr>" +
-                    "<td class=\"text-left\"><a href=\"/ZZZ_ag_908/livraria?rca=pIpD&id=" + product.id + "\">" + product.description + "</a></td>" +
+                    "<td class=\"text-left\"><a href=\"/ZZZ_ag_908/ag?rsa=ptivptv&id=" + product.id + "\">" + product.description + "</a></td>" +
+                    "<td class=\"text-right\">x " + product.model + "</td>" +
                     "<td class=\"text-right\">x " + product.quantity + "</td>" +
                     "<td class=\"text-right\">R$ " + product.price.toFixed(2) + "</td>" +
                     "<td class=\"text-center\"><button type=\"button\" onclick=\"cart.remove('" + product.id + "');\" title=\"Remover\" class=\"btn btn-danger btn-xs\"><i class=\"fa fa-times\"></i></button></td>" +
@@ -56,12 +57,12 @@ function updateCart() {
 var cart = {
     'add': function (product_id) {
         $.ajax({
-            url: 'JsonService?entity=Product&action=findOneById',
+            url: 'ag?rsa=ptij',
             type: 'post',
             data: 'id=' + product_id,
-            dataType: 'json',
-            success: function (json) {
-                $('.alert-dismissible').remove();
+            dataType: 'json',            
+            success: function (json) {                               
+                $('.alert-dismissible').remove();                
                 json.forEach(function (item, indice) {
                     var quantidade = 1;
                     var carrinho = [];
@@ -88,6 +89,7 @@ var cart = {
                         jsonProduct['quantity'] = 1;
                         jsonProduct['price'] = parseFloat(item.price);
                         jsonProduct['description'] = item.name;
+                        jsonProduct['model'] = item.model;
                         carrinho.push(jsonProduct);
                     }
                     localStorage.setItem("carrinho", JSON.stringify(carrinho));
@@ -102,8 +104,8 @@ var cart = {
                     $('html, body').animate({scrollTop: 0}, 'slow');
                 });
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            error: function (xhr, textStatus, thrownError) {
+                alert("thrownError=" + thrownError + "\r\n" + 'xhr.statusText=' + xhr.statusText + "\r\n" + 'xhr.responseText=' + xhr.responseText + "\r\n" + "textStatus=" + textStatus);
             }
         });
     },
@@ -135,7 +137,7 @@ var cart = {
         if (localStorage.getItem("carrinho")) { // Verifica se o carrinho está vazio
             var carrinho = JSON.parse(localStorage.getItem("carrinho"));
             $.ajax({
-                url: 'JsonService?entity=Order&action=add',
+                url: 'ag?rsa=odc',
                 type: 'post',
                 data: 'cart=' + carrinho,
                 dataType: 'json',

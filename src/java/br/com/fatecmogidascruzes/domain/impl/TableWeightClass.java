@@ -6,23 +6,20 @@
 package br.com.fatecmogidascruzes.domain.impl;
 
 import br.com.fatecmogidascruzes.domain.EntidadeDominio;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,15 +30,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableWeightClass.findAll", query = "SELECT t FROM TableWeightClass t"),
-    @NamedQuery(name = "TableWeightClass.findByWeightClassId", query = "SELECT t FROM TableWeightClass t WHERE t.weightClassId = :weightClassId"),
+    @NamedQuery(name = "TableWeightClass.findById", query = "SELECT t FROM TableWeightClass t WHERE t.weightClassId = :id"),
     @NamedQuery(name = "TableWeightClass.findByTitle", query = "SELECT t FROM TableWeightClass t WHERE t.title = :title"),
     @NamedQuery(name = "TableWeightClass.findByUnit", query = "SELECT t FROM TableWeightClass t WHERE t.unit = :unit"),
     @NamedQuery(name = "TableWeightClass.findByValue", query = "SELECT t FROM TableWeightClass t WHERE t.value = :value")})
 public class TableWeightClass extends EntidadeDominio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "weight_class_id")
     private Integer weightClassId;
     
@@ -61,12 +58,7 @@ public class TableWeightClass extends EntidadeDominio implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "value")
-    private BigDecimal value;    
-    
-    // Collections ---------------------------------------------------------------------------------------------------------------------------------
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "weightClass")
-    private List<TableProduct> tableProductList;
+    private BigDecimal value;  
 
     // Constructors ---------------------------------------------------------------------------------------------------------------------------------
     public TableWeightClass() {
@@ -92,15 +84,30 @@ public class TableWeightClass extends EntidadeDominio implements Serializable {
     public void setId(Integer weightClassId) {
         this.weightClassId = weightClassId;
     }
-
-
-    @XmlTransient
-    public List<TableProduct> getTableProductList() {
-        return tableProductList;
+     
+    @Override
+    public String getName() {
+        return title;
     }
 
-    public void setTableProductList(List<TableProduct> tableProductList) {
-        this.tableProductList = tableProductList;
+    public void setName(String title) {
+        this.title = title;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     @Override
@@ -121,35 +128,5 @@ public class TableWeightClass extends EntidadeDominio implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.fatecmogidascruzes.domain.impl.TableWeightClass[ weightClassId=" + weightClassId + " ]";
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-    
+    }   
 }

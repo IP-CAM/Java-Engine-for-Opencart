@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableStockStatus.findAll", query = "SELECT t FROM TableStockStatus t"),
-    @NamedQuery(name = "TableStockStatus.findByStockStatusId", query = "SELECT t FROM TableStockStatus t WHERE t.stockStatusId = :stockStatusId"),
+    @NamedQuery(name = "TableStockStatus.findById", query = "SELECT t FROM TableStockStatus t WHERE t.stockStatusId = :id"),
     @NamedQuery(name = "TableStockStatus.findByName", query = "SELECT t FROM TableStockStatus t WHERE t.name = :name")})
 public class TableStockStatus extends EntidadeDominio implements Serializable {
     private static final long serialVersionUID = 1L;

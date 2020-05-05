@@ -60,7 +60,7 @@ public class Autenticacao extends HttpServlet{
          // Comando para finalizar sessão:
         HttpSession sessao = request.getSession();
         sessao.setMaxInactiveInterval(1); 
-        request.getRequestDispatcher("/livraria?rca=sI1_").forward(request, response);
+        request.getRequestDispatcher("/ag?rsa=baavafh").forward(request, response);
     }
 
     /**

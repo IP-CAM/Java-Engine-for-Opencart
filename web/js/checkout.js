@@ -10,10 +10,11 @@ function checkoutCart(){
         carrinho.forEach(function (product, indice) {
             myCart +=                 
             "<tr>" +
-            "<td><a href=\"/ZZZ_ag_908/livraria?rca=pIpD&id=" + product.id + "\">" +
+            "<td><a href=\"/ZZZ_ag_908/ag?rsa=ptivptv&id=" + product.id + "\">" +
             "<img src=\"img/" + product.image + "\" alt=\"" + product.name + "\" title=\"" + product.name+ "\" class=\"img-thumbnail\" width=\"52\" height=\"52\">" +
             "</a></td>" +
-            "<td class=\"text-left\"><a href=\"/ZZZ_ag_908/livraria?rca=pIpD&id=" + product.id + "\">" + product.description + "</a></td>" +
+            "<td class=\"text-left\"><a href=\"/ZZZ_ag_908/ag?rsa=ptivptv&id=" + product.id + "\">" + product.description + "</a></td>" +
+            "<td class=\"text-left\">" + product.model + "</td>" +
             "<td class=\"text-right\">" +
             "<input type=\"number\" name=\"quantity\" value=\"" + product.quantity + "\" onclick=\"cart.update('" + product.id + "');checkoutCart();\" id=\"" + product.id + "\" min=\"0\" class=\"form-control\">" +
             "</td>" +

@@ -10,7 +10,7 @@ import br.com.fatecmogidascruzes.controle.web.command.impl.CreateCommand;
 import br.com.fatecmogidascruzes.controle.web.command.impl.FindOneByIdCommand;
 import br.com.fatecmogidascruzes.controle.web.command.impl.FindOneByNameCommand;
 import br.com.fatecmogidascruzes.controle.web.vh.DTO.ProductCartDTO;
-import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.impl.TableOrder;
 import br.com.fatecmogidascruzes.domain.IEntidade;
@@ -21,12 +21,18 @@ import br.com.fatecmogidascruzes.domain.impl.TableOrderHistory;
 import br.com.fatecmogidascruzes.domain.impl.TableOrderProduct;
 import br.com.fatecmogidascruzes.domain.impl.TableOrderStatus;
 import br.com.fatecmogidascruzes.domain.impl.TableOrderTotal;
+import br.com.fatecmogidascruzes.domain.impl.TableProduct;
 import br.com.fatecmogidascruzes.domain.impl.TableStore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,15 +42,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Josias Wattrelos
  */
-public class OrderViewHelper implements IViewHelper {
+public class OrderViewHelper extends EntityFactory {
     
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
         HttpSession sessao = request.getSession();
         TableOrder order = new TableOrder();
-        switch(request.getParameter("rca").charAt(1)){
-            case 'C':
-                
+        switch(request.getParameter("rsa").charAt(2)){
+            case 'c':
                 // Adiconar cliente (customer) ao pedido (order):
                 TableCustomer customer = new TableCustomer();                       
                 customer.setUsername((String)sessao.getAttribute("user"));
@@ -134,11 +139,12 @@ public class OrderViewHelper implements IViewHelper {
                 order.setInvoicePrefix("AGSC");                
                 order.setOrderStatusId(new TableOrderStatus(1)); // Attribui o estado (status) inicial do pedido (order).                
                 break;
-            case 'n':                
-                order.setUsername(request.getParameter("name"));                
+            case 'n': 
+                String user = (String)sessao.getAttribute("user");
+                order.setName(user);                
                 break;
-            case 'I':                
-                order.setId(Integer.parseInt(request.getParameter("id")));
+            case 'i':                
+                order.setId(Integer.parseInt(request.getParameter("id")));                
                 break;
             default:
                 order.setId(1);
@@ -150,68 +156,96 @@ public class OrderViewHelper implements IViewHelper {
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws ServletException {
        
         List<TableOrder> orderList = (List<TableOrder>)(List<?>) resultado.getEntidades();
-        request.setAttribute("orderList", orderList);
         
-        if(request.getParameter("rca").charAt(1) == 'C'){
-            String productCart;
-            productCart = request.getParameter("orderProduct");
-            
-            TableOrder order = orderList.get(0);
-            IComando create = new CreateCommand();
-            
-            Gson json = new Gson();
+        String rsa = request.getParameter("rsa");
+        if(rsa.charAt(3) == 'v'){
+            request.setAttribute("orderList", orderList);
 
-            Type collectionType = new TypeToken<List<ProductCartDTO>>() {}.getType();
+            if(request.getParameter("rsa").charAt(2) == 'c'){
+                String productCart;
+                productCart = request.getParameter("orderProduct");
 
-            List<ProductCartDTO> productCartDtoList = json.fromJson(productCart, collectionType);
-            String product = "";
-            BigDecimal subtotal = new BigDecimal(0.0);
-            for (ProductCartDTO productCartDTO: productCartDtoList){
-                
-                TableOrderProduct orderProduct = new TableOrderProduct();
-                orderProduct.setProductId(productCartDTO.getId()); // Em OrderProduct é o id do produto referenciado (cópia). Não é o id do indice!
-                orderProduct.setOrder(order);
-                orderProduct.setQuantity(productCartDTO.getQuantity());
-                orderProduct.setPrice(productCartDTO.getPrice());
-                
-                subtotal = subtotal.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getQuantity())));
-                
-                create.execute(orderProduct);
+                TableOrder order = orderList.get(0);
+                IComando create = new CreateCommand();
+                Gson json = new Gson();
+
+                Type collectionType = new TypeToken<List<ProductCartDTO>>() {}.getType();
+
+                List<ProductCartDTO> productCartDtoList = json.fromJson(productCart, collectionType);
+                BigDecimal subtotal = new BigDecimal(0.0);
+                for (ProductCartDTO productCartDTO: productCartDtoList){
+
+                    TableOrderProduct orderProduct = new TableOrderProduct();
+                    orderProduct.setProductId(productCartDTO.getId()); // Em OrderProduct é o id do produto referenciado (cópia). Não é o id do indice!
+                    orderProduct.setName(productCartDTO.getName());
+                    orderProduct.setOrder(order);
+                    orderProduct.setQuantity(productCartDTO.getQuantity());
+                    orderProduct.setPrice(productCartDTO.getPrice());
+                    orderProduct.setModel(productCartDTO.getModel());
+                    orderProduct.setTax(new BigDecimal(0.0));
+                    orderProduct.setTotal(productCartDTO.getPrice().multiply(new BigDecimal(orderProduct.getQuantity())));
+
+                    subtotal = subtotal.add(orderProduct.getPrice().multiply(new BigDecimal(orderProduct.getQuantity())));
+
+                    create.execute(orderProduct);
+                }
+
+                // Gravar total ------------------------------------------------------------------------------
+                //subtotal
+                TableOrderTotal orderSubtotal = new TableOrderTotal();            
+                orderSubtotal.setOrder(order);
+                orderSubtotal.setName("Subtotal");
+                orderSubtotal.setCode("subtotal");
+                orderSubtotal.setValue(subtotal);
+
+                //Frete
+                TableOrderTotal ordershipping = new TableOrderTotal();
+                ordershipping.setOrder(order);
+                ordershipping.setName("Transportadora"); // Atualizar este campo quando o cálculo do frete for implementado.
+                ordershipping.setCode("shipping");
+                ordershipping.setValue(new BigDecimal(request.getParameter("shipping-value"))); // Atualizar este campo quando o cálculo do frete for implementado.
+
+                //total
+                TableOrderTotal orderTotal = new TableOrderTotal();
+                orderTotal.setOrder(order);
+                orderTotal.setName("Total");
+                orderTotal.setCode("total");
+                orderTotal.setValue(subtotal.add(ordershipping.getValue()));
+                //
+                create.execute(orderSubtotal);
+                create.execute(ordershipping);
+                create.execute(orderTotal);
+                // Criar histórico inicial do pedido após criação d o pedido (dependencia hierárquica) -----------------------------------------------------------------------                
+
+                TableOrderHistory orderHistory = new TableOrderHistory();
+                orderHistory.setOrder(order);
+                orderHistory.setOrderStatus(new TableOrderStatus(1)); // Todo pedido se inicia como pendente;
+                orderHistory.setNotify(false); // Receber notificação sobre o andamento do pedido.
+                orderHistory.setComment("");
+                create.execute(orderHistory);
+            }else if(request.getParameter("rsa").charAt(2) == 'i'){
+                if(request.getParameter("productId") != null){
+                    request.setAttribute("productId", request.getParameter("productId"));                
+                }
             }
-            
-            // Gravar total ------------------------------------------------------------------------------
-            //subtotal
-            TableOrderTotal orderSubtotal = new TableOrderTotal();            
-            orderSubtotal.setOrder(order);
-            orderSubtotal.setTitle("Subtotal");
-            orderSubtotal.setCode("subtotal");
-            orderSubtotal.setValue(subtotal);
-            
-            //Frete
-            TableOrderTotal ordershipping = new TableOrderTotal();
-            ordershipping.setOrder(order);
-            ordershipping.setTitle("Transportadora"); // Atualizar este campo quando o cálculo do frete for implementado.
-            ordershipping.setCode("shipping");
-            ordershipping.setValue(new BigDecimal(request.getParameter("shipping-value"))); // Atualizar este campo quando o cálculo do frete for implementado.
-            
-            //total
-            TableOrderTotal orderTotal = new TableOrderTotal();
-            orderTotal.setOrder(order);
-            orderTotal.setTitle("Total");
-            orderTotal.setCode("total");
-            orderTotal.setValue(subtotal.add(ordershipping.getValue()));
-            //
-            create.execute(orderSubtotal);
-            create.execute(ordershipping);
-            create.execute(orderTotal);
-            // Criar histórico inicial do pedido após criação d o pedido (dependencia hierárquica) -----------------------------------------------------------------------                
-                
-            TableOrderHistory orderHistory = new TableOrderHistory();
-            orderHistory.setOrder(order);
-            orderHistory.setOrderStatus(new TableOrderStatus(1)); // Todo pedido se inicia como pendente;
-            orderHistory.setNotify(false); // Receber notificação sobre o andamento do pedido.
-            orderHistory.setComment("");
-            create.execute(orderHistory);
-        }        
+            // Obtém o caminho da página a ser encaminhada
+            Integer selectpath = 26 * ((int)rsa.charAt(4) - 96) + ((int)rsa.charAt(5) - 96);
+            Integer selectPage = (int)rsa.charAt(6) - 96;
+            // Encaminha para a página JSP que receberá o conteúdo:       
+            try {
+                request.getRequestDispatcher(getPath(selectpath).toLowerCase() + getPath(selectPage).toLowerCase()).forward(request, response);
+            } catch (IOException ex) {
+                Logger.getLogger("Erro " + ex);
+            }
+        }else{
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            response.setContentType("application/json;charset=UTF-8");
+            try {
+                response.getWriter().write(objectMapper.writeValueAsString(resultado.getEntidades()));
+            } catch (IOException ex) {
+                Logger.getLogger(OrderViewHelper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

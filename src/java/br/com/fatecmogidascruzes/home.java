@@ -31,7 +31,7 @@ public class home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
-           request.getRequestDispatcher("/livraria?rca=sI1_").forward(request, response);
+           request.getRequestDispatcher("/ag?rsa=baavafh").forward(request, response);
         }
     }
 

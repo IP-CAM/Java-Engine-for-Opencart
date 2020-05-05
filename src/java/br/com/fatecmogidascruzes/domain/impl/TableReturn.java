@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableReturn.findAll", query = "SELECT t FROM TableReturn t"),
-    @NamedQuery(name = "TableReturn.findByReturnId", query = "SELECT t FROM TableReturn t WHERE t.returnId = :returnId"),
+    @NamedQuery(name = "TableReturn.findById", query = "SELECT t FROM TableReturn t WHERE t.returnId = :id"),
     @NamedQuery(name = "TableReturn.findByFullname", query = "SELECT t FROM TableReturn t WHERE t.fullname = :fullname"),
     @NamedQuery(name = "TableReturn.findByEmail", query = "SELECT t FROM TableReturn t WHERE t.email = :email"),
     @NamedQuery(name = "TableReturn.findByTelephone", query = "SELECT t FROM TableReturn t WHERE t.telephone = :telephone"),
@@ -92,19 +92,19 @@ public class TableReturn extends EntidadeDominio implements Serializable {
     @Size(max = 65535)
     @Column(name = "comment")
     private String comment;
+    
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "date_ordered")
-    @Temporal(TemporalType.DATE)
+    @Column(name = "date_ordered", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.DATE)    
     private Date dateOrdered;
+    
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "date_added")
+    @Column(name = "date_added", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAdded;
+    private Date dateAdded; 
+    
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "date_modified")
+    @Column(name = "date_modified", updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateModified;
     
@@ -191,11 +191,11 @@ public class TableReturn extends EntidadeDominio implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getProduct() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProduct(String product) {
+    public void setProductName(String product) {
         this.productName = product;
     }
 
@@ -263,43 +263,43 @@ public class TableReturn extends EntidadeDominio implements Serializable {
         this.customer = customer;
     }
 
-    public TableOrder getOrderId() {
+    public TableOrder getOrder() {
         return order;
     }
 
-    public void setOrderId(TableOrder orderId) {
+    public void setOrder(TableOrder orderId) {
         this.order = orderId;
     }
 
-    public TableProduct getProductId() {
+    public TableProduct getProduct() {
         return product;
     }
 
-    public void setProductId(TableProduct productId) {
-        this.product = productId;
+    public void setProduct(TableProduct product) {
+        this.product = product;
     }
 
-    public TableReturnAction getReturnActionId() {
+    public TableReturnAction getReturnAction() {
         return returnAction;
     }
 
-    public void setReturnActionId(TableReturnAction returnActionId) {
+    public void setReturnAction(TableReturnAction returnActionId) {
         this.returnAction = returnActionId;
     }
 
-    public TableReturnReason getReturnReasonId() {
+    public TableReturnReason getReturnReason() {
         return returnReason;
     }
 
-    public void setReturnReasonId(TableReturnReason returnReasonId) {
+    public void setReturnReason(TableReturnReason returnReasonId) {
         this.returnReason = returnReasonId;
     }
 
-    public TableReturnStatus getReturnStatusId() {
+    public TableReturnStatus getReturnStatus() {
         return returnStatus;
     }
 
-    public void setReturnStatusId(TableReturnStatus returnStatusId) {
+    public void setReturnStatus(TableReturnStatus returnStatusId) {
         this.returnStatus = returnStatusId;
     }
 

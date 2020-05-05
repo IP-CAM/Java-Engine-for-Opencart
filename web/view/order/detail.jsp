@@ -77,7 +77,7 @@
                                                     <td class="text-right"><fmt:formatNumber value = "${product.price}" type = "currency"/></td>
                                                     <td class="text-right"><fmt:formatNumber value = "${product.quantity * product.price}" type = "currency"/></td>
                                                     <td class="text-right" style="white-space: nowrap;">                                                        
-                                                        <a href="/ZZZ_ag_908/livraria?rca=PIOD&id=${product.id}" data-toggle="tooltip" title="Solicitar devolução deste produto." class="btn btn-danger" data-original-title="Solicitar devolução"><i class="fa fa-reply"></i></a>
+                                                        <a href="/ZZZ_ag_908/ag?rsa=odivrtc&id=${order.id}&productId=${product.id}" data-toggle="tooltip" title="Solicitar devolução deste produto." class="btn btn-danger" data-original-title="Solicitar devolução"><i class="fa fa-reply"></i></a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>                                           

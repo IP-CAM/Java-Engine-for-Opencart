@@ -5,16 +5,18 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
-import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.impl.TableCustomer;
 import br.com.fatecmogidascruzes.domain.IEntidade;
 import br.com.fatecmogidascruzes.domain.impl.TableCustomerGroup;
 import br.com.fatecmogidascruzes.domain.impl.TableUserGroup;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,13 +28,14 @@ import javax.servlet.http.HttpSession;
  *
  * @author Josias Wattrelos
  */
-public class CustomerViewHelper implements IViewHelper {
+public class CustomerViewHelper extends EntityFactory {
 
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
-        TableCustomer customer = new TableCustomer();
-        switch(request.getParameter("rca").charAt(1)){
-            case 'C': // Se a rota for para criar (create) cliente (Customer):
+        TableCustomer customer = new TableCustomer();        
+        switch(request.getParameter("rsa").charAt(2)){
+            
+            case 'c': // Se a rota for para criar (create) cliente (Customer):
                 // customerList.setId(Integer.parseInt(request.getParameter("id")));
                 customer.setUserGroup(new TableUserGroup(4)); // Todo cliente é usuário do tipo "Customer".
                 // customerList.setStore(null);
@@ -69,50 +72,50 @@ public class CustomerViewHelper implements IViewHelper {
                 else
                     customer.setNewsletter(false);
                 break;
-            case 'I': // Se a rota for para criar (create) cliente (Customer):                
+            case 'i': // Se a rota for para criar (create) cliente (Customer):                
                 customer.setId(Integer.parseInt(request.getParameter("id")));
                 break;
             case 'n': // Se a rota for para criar (create) cliente (Customer):
-                HttpSession sessao = request.getSession();                
+                HttpSession sessao = request.getSession();
                 String user = (String)sessao.getAttribute("user");
                 customer.setUsername(user);
                 break;
             default:
                 customer.setId(1);
-        }
-        
-        return customer;        
+        }        
+        return customer;
     }
-
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws ServletException {
-       
-        List<TableCustomer> customerList = (List<TableCustomer>)(List<?>) resultado.getEntidades();      
-        request.setAttribute("customer", customerList.get(0));
-        switch(request.getParameter("rca").charAt(2)){
-            case 'a': // Se a rota for para mortar um alista (list.jsp)
-                request.setAttribute("addressList", customerList.get(0).getAddressList());
-                request.setAttribute("customerUserName", customerList.get(0).getUsername());
-                request.setAttribute("customerId", customerList.get(0).getId());
-                break;
-            case 'O': // Se a rota for para mostrar detalhe (detail.jsp)
-                if(request.getParameter("rca").charAt(3) == 'C'){
-                    request.setAttribute("customer", customerList.get(0));
-                }else{                    
-                    request.setAttribute("orderList", customerList.get(0).getOrderList());
+        String rsa = request.getParameter("rsa");
+        if(rsa.charAt(3) == 'v'){
+                String pathUrl = "";
+                // Converter o resultado em objetos de páginas HTTP
+                // request.setAttribute("title",  resultado.getEntidades().get(0).getClass().getSimpleName().replace("Table", "")); // Remove a palavra Table do nome da classe
+                request.setAttribute(resultado.getEntidades().get(0).getClass().getSimpleName().replace("Table", "").toLowerCase() + "List",  resultado.getEntidades());
+                                                
+                // Obtém o caminho da página a ser encaminhada
+                Integer selectpath = 26 * ((int)rsa.charAt(4) - 96) + ((int)rsa.charAt(5) - 96);
+                Integer selectPage = (int)rsa.charAt(6) - 96;
+                pathUrl = getPath(selectpath).toLowerCase() + getPath(selectPage).toLowerCase();
+                
+                // Encaminha para a página JSP que receberá o conteúdo:       
+                try {
+                    request.getRequestDispatcher(pathUrl).forward(request, response);
+                } catch (IOException ex) {
+                    Logger.getLogger("Erro " + ex);
                 }
-                break;
-            default:        
-                switch(request.getParameter("rca").charAt(3)){
-                    case 'L': // Se a rota for para mortar um alista (list.jsp)
-                        request.setAttribute("customerList", customerList);
-                        break;
-                    case 'D': // Se a rota for para mostrar detalhe (detail.jsp)
-                        request.setAttribute("customer", customerList.get(0));
-                        break;
-                    default:
-                        request.setAttribute("customerList", customerList);
+            }else{
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.enable(SerializationFeature.INDENT_OUTPUT);        
+
+                response.setContentType("application/json;charset=UTF-8");
+                try {
+                    response.getWriter().write(objectMapper.writeValueAsString(resultado.getEntidades()));
+                } catch (IOException ex) {
+                    Logger.getLogger(resultado.getEntidades().get(0).getClass().getSimpleName()).log(Level.SEVERE, null, ex);
                 }
-        }
+            }
     }
+    
 }

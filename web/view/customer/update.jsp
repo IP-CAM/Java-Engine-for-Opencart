@@ -19,7 +19,7 @@
             <div class="row">
                 <div id="content" class="col-sm-9">
                     <h1>Informações da conta</h1>
-                    <form action="/ZZZ_ag_908/livraria?action=edit" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="/ZZZ_ag_908/Servlet?action=edit" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <fieldset>
                             <legend>Caso deseje, modifique as informações da sua conta</legend>
                             <div class="form-group required">
@@ -42,7 +42,7 @@
                             </div>
                         </fieldset>
                         <div class="buttons clearfix">
-                            <div class="pull-left"><a href="/ZZZ_ag_908/livraria?action=account" class="btn btn-default">Voltar</a></div>
+                            <div class="pull-left"><a href="/ZZZ_ag_908/Servlet?action=account" class="btn btn-default">Voltar</a></div>
                             <div class="pull-right">
                                 <input type="submit" value="Continuar" class="btn btn-primary">
                             </div>

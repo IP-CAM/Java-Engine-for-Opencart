@@ -7,6 +7,7 @@ package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
 import br.com.fatecmogidascruzes.controle.web.command.IComando;
 import br.com.fatecmogidascruzes.controle.web.command.impl.FindOneByNameCommand;
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.IEntidade;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Josias Wattrelos
  */
-public class CreditcardViewHelper implements IViewHelper {
+public class CreditcardViewHelper extends EntityFactory {
 
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
@@ -36,7 +37,7 @@ public class CreditcardViewHelper implements IViewHelper {
         TableCreditCard creditcard = new TableCreditCard();
         
         switch(request.getParameter("rca").charAt(1)){
-            case 'I': // Se a rota for para buscar creditcard por ID
+            case 'i': // Se a rota for para buscar creditcard por ID
                 creditcard.setId(Integer.parseInt(request.getParameter("id")));
             break;
                 case 'C': // Se a rota for para buscar creditcard por ID

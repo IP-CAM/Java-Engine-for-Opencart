@@ -5,6 +5,7 @@
  */
 package br.com.fatecmogidascruzes.controle.web.vh.impl;
 
+import br.com.fatecmogidascruzes.controle.web.vh.EntityFactory;
 import br.com.fatecmogidascruzes.controle.web.vh.IViewHelper;
 import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.impl.TableUser;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Josias Wattrelos
  */
-public class UserViewHelper implements IViewHelper {
+public class UserViewHelper extends EntityFactory {
 
     @Override
     public IEntidade getEntidade(HttpServletRequest request) {
@@ -29,7 +30,7 @@ public class UserViewHelper implements IViewHelper {
                 user.setUsername(request.getParameter("userName"));
                 user.setPassword(request.getParameter("password"));
                 break;
-            case 'I': // Se a rota for para criar (create) cliente (User):                
+            case 'i': // Se a rota for para criar (create) cliente (User):                
                 user.setId(Integer.parseInt(request.getParameter("id")));
                 break;
             default:
@@ -47,7 +48,7 @@ public class UserViewHelper implements IViewHelper {
             case 'L': // Se a rota for para mortar um alista (list.jsp)
                 request.setAttribute("userList", user);
                 break;
-            case 'D': // Se a rota for para mostrar detalhe (detail.jsp)
+            case 'd': // Se a rota for para mostrar detalhe (detail.jsp)
                 request.setAttribute("user", user.get(0));
                 break;
                 

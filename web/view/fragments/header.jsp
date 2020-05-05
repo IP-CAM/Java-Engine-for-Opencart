@@ -22,21 +22,21 @@
                              </li>
                         </c:when>
                         <c:otherwise>
-                            <li class="dropdown"><a href="/ZZZ_ag_908/livraria?rca=uIuD" title="Customer" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">${user}</span><span class="caret"></span></a>
+                            <li class="dropdown"><a href="/ZZZ_ag_908/ag?rsa=cinvciv" title="Customer" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">${user}</span><span class="caret"></span></a>
                                 <ul class="dropdown-menu dropdown-menu-right">                                
-                                    <li><a href="/ZZZ_ag_908/livraria?rca=unuD">Minha conta</a></li>
-                                    <li><a href="/ZZZ_ag_908/livraria?rca=OnOL&name=${user}">Histórico de pedidos</a></li>
+                                    <li><a href="/ZZZ_ag_908/ag?rsa=cinvciv">Minha conta</a></li>
+                                    <li><a href="/ZZZ_ag_908/ag?rsa=odnvodl">Histórico de pedidos</a></li>
                                     <li><a href="/ZZZ_ag_908/Autenticacao?action=sair">Sair</a></li>
                                 </ul>
                             </li>
                         </c:otherwise>
                     </c:choose>
                
-                <li><a href="/ZZZ_ag_908/livraria?route=account/wishlist" id="wishlist-total" title="Lista de desejos (0)"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">Lista de desejos (0)</span></a></li>
+                <li><a href="/ZZZ_ag_908/Servlet?route=account/wishlist" id="wishlist-total" title="Lista de desejos (0)"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">Lista de desejos (0)</span></a></li>
                 <li><a href="/ZZZ_ag_908/view/cart/detail.jsp" title="Carrinho de compras"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Carrinho de compras</span></a></li>
                 <c:choose>
                     <c:when test="${!empty user}">
-                        <li><a href="/ZZZ_ag_908/livraria?rca=unOC" title="Finalizar pedido"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">Finalizar pedido</span></a></li>
+                        <li><a href="/ZZZ_ag_908/ag?rsa=cinvodc" title="Finalizar pedido"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">Finalizar pedido</span></a></li>
                     </c:when>
                 </c:choose>
             </ul>

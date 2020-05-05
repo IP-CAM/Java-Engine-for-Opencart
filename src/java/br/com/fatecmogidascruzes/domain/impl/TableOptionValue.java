@@ -5,6 +5,7 @@
  */
 package br.com.fatecmogidascruzes.domain.impl;
 
+import br.com.fatecmogidascruzes.domain.EntidadeDominio;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,12 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TableOptionValue.findAll", query = "SELECT t FROM TableOptionValue t"),
-    @NamedQuery(name = "TableOptionValue.findByOptionValueId", query = "SELECT t FROM TableOptionValue t WHERE t.optionValueId = :optionValueId"),
+    @NamedQuery(name = "TableOptionValue.findById", query = "SELECT t FROM TableOptionValue t WHERE t.optionValueId = :id"),
     @NamedQuery(name = "TableOptionValue.findByOptionId", query = "SELECT t FROM TableOptionValue t WHERE t.optionId = :optionId"),
     @NamedQuery(name = "TableOptionValue.findByImage", query = "SELECT t FROM TableOptionValue t WHERE t.image = :image"),
     @NamedQuery(name = "TableOptionValue.findBySortOrder", query = "SELECT t FROM TableOptionValue t WHERE t.sortOrder = :sortOrder"),
     @NamedQuery(name = "TableOptionValue.findByName", query = "SELECT t FROM TableOptionValue t WHERE t.name = :name")})
-public class TableOptionValue implements Serializable {
+public class TableOptionValue extends EntidadeDominio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,11 +75,11 @@ public class TableOptionValue implements Serializable {
         this.name = name;
     }
 
-    public Integer getOptionValueId() {
+    public Integer getId() {
         return optionValueId;
     }
 
-    public void setOptionValueId(Integer optionValueId) {
+    public void setId(Integer optionValueId) {
         this.optionValueId = optionValueId;
     }
 

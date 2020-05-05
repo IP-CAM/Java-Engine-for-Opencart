@@ -133,9 +133,8 @@ public class TableCustomer extends TableUser {
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "table_customer_wishlist", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<TableProduct> productWishList;
+    private List<TableProduct> productWishList;    
     
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<TableReturn> returnList;
     
@@ -199,7 +198,12 @@ public class TableCustomer extends TableUser {
     @Override
     public String getName(){
         return this.username;
-    }       
+    } 
+    
+    @Override
+    public void setName(String name){
+        this.username = name;
+    }
 
     public String getFullName() {
         return fullName;

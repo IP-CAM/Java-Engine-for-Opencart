@@ -20,7 +20,7 @@ public class EntityManagerProvider {
 
     /* Deprecated */
     private static final SessionFactory sessionFactory;
-    private static final ThreadLocal<Session> session = new ThreadLocal<Session>();
+    private static final ThreadLocal<Session> session = new ThreadLocal<>();
 
     static {
         try {
