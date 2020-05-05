@@ -96,7 +96,7 @@
                                             </div>
                                             <h1>${product.name}</h1>
                                             <ul class="list-unstyled">
-                                                <li>Marca: <a href="ag?rsa=ptpvptl&findBy=Manufacturer&searchValue=${product.manufacturer.id}">${product.manufacturer.name}</a></li>
+                                                <li>Marca: <a href="ag?rsa=pgpvptl&findBy=Manufacturer&searchValue=${product.manufacturer.id}">${product.manufacturer.name}</a></li>
                                                 <li>Modelo: ${product.model}</li>
                                                 <li>Disponibilidade:
                                                     <c:choose>                            
@@ -110,7 +110,7 @@
                                                 </li>
                                                 <li>
                                                     <c:forEach var="categoryL1" items="${product.categoryList}">
-                                                        <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL1.id}">${categoryL1.name}</a>
+                                                        <a href="/ZZZ_ag_908/ag?rsa=pgpvptl&findBy=Category&searchValue=${categoryL1.id}">${categoryL1.name}</a>
                                                     </c:forEach>
                                                 </li>
                                             </ul>

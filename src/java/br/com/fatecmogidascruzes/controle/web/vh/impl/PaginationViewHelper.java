@@ -10,7 +10,12 @@ import br.com.fatecmogidascruzes.core.aplicacao.Resultado;
 import br.com.fatecmogidascruzes.domain.IEntidade;
 import br.com.fatecmogidascruzes.domain.impl.Pagination;
 import br.com.fatecmogidascruzes.domain.impl.TableProduct;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,12 +64,33 @@ public class PaginationViewHelper extends EntityFactory {
     @Override
     public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response) throws ServletException {
         List<TableProduct> entity = (List<TableProduct>)(List<?>) resultado.getEntidades();
-        request.setAttribute("productList", entity); 
-        request.setAttribute("itensQuantity", resultado.getItensQuantity());
-        request.setAttribute("pageNumber", resultado.getPageNumber());
-        request.setAttribute("pageQuantity", resultado.getPageQuantity());
-        request.setAttribute("lastPage", resultado.isLastPage());
-        request.setAttribute("initialPage", resultado.getInitialPage());
-        request.setAttribute("finalPage", resultado.getFinalPage());
+        String rsa = request.getParameter("rsa");
+        if(rsa.charAt(3) == 'v'){
+            request.setAttribute("productList", entity); 
+            request.setAttribute("itensQuantity", resultado.getItensQuantity());
+            request.setAttribute("pageNumber", resultado.getPageNumber());
+            request.setAttribute("pageQuantity", resultado.getPageQuantity());
+            request.setAttribute("lastPage", resultado.isLastPage());
+            request.setAttribute("initialPage", resultado.getInitialPage());
+            request.setAttribute("finalPage", resultado.getFinalPage());
+            // Obtém o caminho da página a ser encaminhada
+            Integer selectpath = 26 * ((int)rsa.charAt(4) - 96) + ((int)rsa.charAt(5) - 96);
+            Integer selectPage = (int)rsa.charAt(6) - 96;
+            // Encaminha para a página JSP que receberá o conteúdo:       
+            try {
+                request.getRequestDispatcher(getPath(selectpath).toLowerCase() + getPath(selectPage).toLowerCase()).forward(request, response);
+            } catch (IOException ex) {
+                Logger.getLogger("Erro " + ex);
+            }
+        }else{
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            response.setContentType("application/json;charset=UTF-8");
+            try {
+                response.getWriter().write(objectMapper.writeValueAsString(resultado.getEntidades()));
+            } catch (IOException ex) {
+                Logger.getLogger(OrderViewHelper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

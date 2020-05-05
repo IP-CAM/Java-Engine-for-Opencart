@@ -109,8 +109,8 @@
                                                 <li><span><i class="fa fa-arrow-stop"></i></span></li> 
                                             </c:when>
                                             <c:otherwise>
-                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=0"><i class="fa fa-step-backward"></i></a></li>
-                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageNumber - 1}"><i class="fa fa-caret-left"></i></a></li>                                                
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=pgpvptl&page=0"><i class="fa fa-step-backward"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=pgpvptl&page=${pageNumber - 1}"><i class="fa fa-caret-left"></i></a></li>                                                
                                             </c:otherwise>
                                         </c:choose>
                                         <%
@@ -124,7 +124,7 @@
                                                     <%
                                                 }else{
                                                     %>
-                                                        <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=<%=i%>"><%=i + 1 %></a></li> <!-- A numerção da página começa em um, mas a variável começa em zero. -->
+                                                        <li><a href="/ZZZ_ag_908/ag?rsa=pgpvptl&page=<%=i%>"><%=i + 1 %></a></li> <!-- A numerção da página começa em um, mas a variável começa em zero. -->
                                                     <%
                                                 }
                                             }
@@ -134,8 +134,8 @@
                                                 <li><span><i class="fa fa-arrow-stop"></i></span></li>
                                             </c:when>
                                             <c:otherwise>                                                
-                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageNumber + 1}&findBy=${pagination.findBy}&searchValue=${pagination.searchValue}"><i class="fa fa-caret-right"></i></a></li>
-                                                <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&page=${pageQuantity}"><i class="fa fa-step-forward"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=papvptl&page=${pageNumber + 1}&findBy=${pagination.findBy}&searchValue=${pagination.searchValue}"><i class="fa fa-caret-right"></i></a></li>
+                                                <li><a href="/ZZZ_ag_908/ag?rsa=papvptl&page=${pageQuantity}"><i class="fa fa-step-forward"></i></a></li>
                                             </c:otherwise>
                                         </c:choose>
                                     </ul>

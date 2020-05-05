@@ -15,20 +15,20 @@
                             <c:when test="${categoryL2.top eq true}">
                                 <c:choose>
                                     <c:when test="${empty categoryL2.categoryList}">
-                                        <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL2.id}">${categoryL2.name}</a></li>
+                                        <li><a href="/ZZZ_ag_908/ag?rsa=pgpvptl&findBy=Category&searchValue=${categoryL2.id}">${categoryL2.name}</a></li>
                                     </c:when>
                                     <c:otherwise>    
                                         <li class="dropdown">
-                                            <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL2.id}" class="dropdown-toggle" data-toggle="dropdown">${categoryL2.name}</a>
+                                            <a href="/ZZZ_ag_908/ag?rsa=pgpvptl&findBy=Category&searchValue=${categoryL2.id}" class="dropdown-toggle" data-toggle="dropdown">${categoryL2.name}</a>
                                             <div class="dropdown-menu">
                                                 <div class="dropdown-inner">               
                                                     <ul class="list-unstyled">
                                                         <c:forEach var="categoryL3" items="${categoryL2.categoryList}">
-                                                            <li><a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL3.id}">${categoryL3.name}</a></li>
+                                                            <li><a href="/ZZZ_ag_908/ag?rsa=pgpvptl&findBy=Category&searchValue=${categoryL3.id}">${categoryL3.name}</a></li>
                                                         </c:forEach>                                                
                                                     </ul>
                                                 </div>
-                                                <a href="/ZZZ_ag_908/ag?rsa=ptpvptl&findBy=Category&searchValue=${categoryL2.id}" class="see-all">Todos em ${categoryL2.name}</a>
+                                                <a href="/ZZZ_ag_908/ag?rsa=pgpvptl&findBy=Category&searchValue=${categoryL2.id}" class="see-all">Todos em ${categoryL2.name}</a>
                                             </div>
                                         </li>                                                
                                     </c:otherwise>
